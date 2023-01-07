@@ -26,13 +26,13 @@ import sideBar from './components/TheSideBar.vue';
     margin: inherit;
     height: inherit;
     background-color: #faf9f8;
-    margin-left:290px;
+    margin-left: 290px;
     padding: 30px;
   }
 
   @media only screen and (max-width: 960px) {  /* sidebar width should be fit-content, therefore margin on routerview has to adapt properly */
     main .routerView {
-      margin-left: 150px;
+      margin-left: 175px;
     }
   }
 </style>

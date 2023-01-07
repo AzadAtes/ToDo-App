@@ -5,14 +5,49 @@
 <template>
     <div class="sideBar">
       <div class="sideBarTop">
-      <router-link class="sideBarItem" to="/todo/myday">My Day</router-link>
-      <router-link class="sideBarItem" to="/todo/important">Important</router-link>
-      <router-link class="sideBarItem" to="/todo/planned">Planned</router-link>
-      <router-link class="sideBarItem" to="/todo/assignedtome">Assigned to me</router-link>
-      <router-link class="sideBarItem" to="/todo/tasks">Tasks</router-link>
+        <div class="sideBarItem">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+          </svg>
+        </div>
+        <div class="sideBarItem">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z" />
+          </svg>
+          <router-link class="sideBarLink" to="/todo/myday">My Day</router-link>
+        </div>
+        <div class="sideBarItem">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z" />
+          </svg>
+          <router-link class="sideBarLink" to="/todo/important">Important</router-link>
+        </div>
+        <div class="sideBarItem">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7 11H9V13H7V11M19 3H18V1H16V3H8V1H6V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M19 5V7H5V5H19M5 19V9H19V19H5M11 15H13V17H11V15M15 15H17V17H15V15M15 11H17V13H15V11Z" />
+          </svg>
+          <router-link class="sideBarLink" to="/todo/planned">Planned</router-link>
+        </div>
+        <div class="sideBarItem">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M12,13C14.67,13 20,14.33 20,17V20H4V17C4,14.33 9.33,13 12,13M12,14.9C9.03,14.9 5.9,16.36 5.9,17V18.1H18.1V17C18.1,16.36 14.97,14.9 12,14.9Z" />
+          </svg>
+          <router-link class="sideBarLink" to="/todo/assignedtome">Assigned to me</router-link>
+        </div>
+        <div class="sideBarItem">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22" />
+          </svg>
+          <router-link class="sideBarLink" to="/todo/tasks">Tasks</router-link>
+        </div>
       </div>
       <div class="sideBarBottom">
-        <div class="sideBarItem">New List</div>
+        <div class="sideBarItem">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+          </svg>
+          <div class="sideBarLink">New Item</div>
+        </div>
       </div>
     </div>
 </template>
@@ -28,8 +63,14 @@
   }
   
   .sideBarItem {
-    display: block;
     padding: 0px 0px 30px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sideBarLink {
+    display: inline-block;
     text-decoration: none;
     color: black;
   }
@@ -38,18 +79,21 @@
     padding-top: 30px;
   }
 
-  .sideBarTop {
-    border-bottom: 1px solid lightgrey;
+  .sideBarTop, .sideBarBottom {
     margin: 0px 7% 0px 7%;
   }
 
-  .sideBarBottom {
-    margin: 0px 7% 0px 7%;
+  .sideBarTop {
+    border-bottom: 1px solid lightgrey;
+  }
+
+  .sideBarBottom .sideBarItem > * {
+    color: #2564cf;
   }
 
   @media only screen and (max-width: 960px) {  /* sidebar width should be fit-content, therefore margin on routerview has to adapt properly */
     main .sideBar {
-      width: 150px;
+      width: 175px;
     }
   }
 </style>
