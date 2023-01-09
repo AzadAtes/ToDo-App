@@ -1,18 +1,16 @@
 <script setup>
-import { ref } from 'vue';
+    const props = defineProps({
+        tasks: Array,
+    })
 
-let toDoList = ref([]);
-toDoList.value.push({task: "hello", complete:false});
-toDoList.value.push({task: "world", complete:false});
-
-function alertToDo(toDo) {
-    alert(toDo.task + ' | ' + toDo.complete)
-}
+    function alertToDo(toDo) {
+        alert('task:\t\t' + toDo.task + '\n' + 'complete:\t' + toDo.complete)
+    }
 </script>
 
 <template>
     <ul class="toDoList">
-        <li class="toDoListItem" v-for="toDo in toDoList">
+        <li class="toDoListItem" v-for="toDo in props.tasks">
             <label class="checkboxWrapper">
                 <input type="checkbox" v-model="toDo.complete" />
             </label>
