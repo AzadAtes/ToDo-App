@@ -1,5 +1,13 @@
-<script setup></script>
+<script setup>
+  import ToDoList from '../components/ToDoList.vue';
+</script>
 
 <template>
-  <p>My Day View</p>
+  <div>
+    <p>My Day</p>
+    <ToDoList />
+  </div>
 </template>
+
+<style scoped>
+</style>

@@ -42,11 +42,11 @@
         </div>
       </div>
       <div class="sideBarBottom">
-        <div class="sideBarItem">
+        <div class="sideBarItem" id="sideBarNewList">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
             <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
           </svg>
-          <div class="sideBarLink">New Item</div>
+          <div class="sideBarLink">New List</div>
         </div>
       </div>
     </div>
@@ -54,19 +54,30 @@
 
 <style scoped>
 .sideBar {
+    height: 100%;
+    width: inherit;
+    position: fixed;
     border-right: 1px solid lightgrey;
     background-color:white;
-    height: inherit;
-    width:290px;
-    position: fixed;
-    left: 0px;
   }
-  
+
+  .sideBarTop, .sideBarBottom {
+    margin: 0px 10px 0px 10px;
+  }
+
+  .sideBarTop {
+    border-bottom: 1px solid lightgrey;
+  }
+
   .sideBarItem {
     padding: 0px 0px 30px 10px;
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+  
+  .sideBarItem:first-child {
+    padding-top: 30px;
   }
 
   .sideBarLink {
@@ -74,26 +85,9 @@
     text-decoration: none;
     color: black;
   }
-  
-  .sideBarItem:first-child {
-    padding-top: 30px;
-  }
 
-  .sideBarTop, .sideBarBottom {
-    margin: 0px 7% 0px 7%;
-  }
-
-  .sideBarTop {
-    border-bottom: 1px solid lightgrey;
-  }
-
-  .sideBarBottom .sideBarItem > * {
+  #sideBarNewList > * {
     color: #2564cf;
   }
 
-  @media only screen and (max-width: 960px) {  /* sidebar width should be fit-content, therefore margin on routerview has to adapt properly */
-    main .sideBar {
-      width: 175px;
-    }
-  }
 </style>

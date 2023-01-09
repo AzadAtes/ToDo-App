@@ -46,7 +46,7 @@
     text-align: right;
   }
 
-  .navBarItems:last-child img {
+  .navBarItems:last-child svg {
     position: relative;
     top: 2px;
     width: 28px;
