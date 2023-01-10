@@ -1,6 +1,6 @@
 <script setup>
   import TaskList from '../components/TaskList.vue';
-  import AddTask from '../components/AddTask.vue';
+  import TaskAdd from '../components/TaskAdd.vue';
   import { ref, computed } from 'vue';
 
   let tasks = ref([]);
@@ -13,7 +13,7 @@
 <template>
   <div>
     <h1>My Day</h1>
-    <AddTask id="addTask" @add-task="addTask" />
+    <TaskAdd id="addTask" @add-task="addTask($event)" />
     <TaskList class="openTasks" :tasks="openTasks"></TaskList>
     <TaskList class="completedTasks" :canToggle="true" :tasks="completedTasks"> complete </TaskList>
   </div>
