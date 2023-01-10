@@ -1,5 +1,7 @@
 <script setup></script>
 
 <template>
-  <p>Important View</p>
+  <div>
+    <h1>Important</h1>
+  </div>
 </template>

@@ -1,5 +1,7 @@
 <script setup></script>
 
 <template>
-  <p>Tasks View</p>
+  <div>
+    <h1>Tasks</h1>
+  </div>
 </template>

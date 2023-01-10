@@ -1,5 +1,7 @@
 <script setup></script>
 
 <template>
-  <p>Planned View</p>
+  <div>
+    <h1>Planned</h1>
+  </div>
 </template>
