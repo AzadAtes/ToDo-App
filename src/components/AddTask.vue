@@ -1,12 +1,13 @@
 <script setup>
     import { ref } from 'vue';
 
-    const props = defineProps({
-      modelValue : String
-    })
+    const emit = defineEmits()
+    let newTask = ref("")
 
-    defineEmits(['update:modelValue', 'addTask'])
-
+    const addTask = () => {
+      emit('addTask', newTask.value)
+      newTask.value = ""
+    }
 </script>
 
 <template>
@@ -15,8 +16,8 @@
         <div class="checkboxWrapper">
           <input type="checkbox" disabled />
         </div>
-        <input type="submit" hidden @click.prevent="$emit('addTask', props.modelValue)">
-        <input type="text" placeholder="Add new Task" :value="props.modelValue" @input="event => $emit('update:modelValue', event.target.value )">
+        <input type="submit" hidden @click.prevent="addTask">
+        <input type="text" placeholder="Add new Task" v-model="newTask">
       </div>
       <div class="footer">
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -28,7 +29,7 @@
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
           <path fill="currentColor" d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z" />
         </svg>
-        <input type="submit" value="add" @click.prevent="$emit('addTask', newTask)" />
+        <input type="submit" value="add" @click.prevent="addTask" />
       </div>
     </form>
 </template>
