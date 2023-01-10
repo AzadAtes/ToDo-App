@@ -3,7 +3,6 @@ import HomeView from '../views/HomeView.vue'
 import MyDayView from '../views/MyDayView.vue'
 import ImportantView from '../views/ImportantView.vue'
 import PlannedView from '../views/PlannedView.vue'
-import AssignedToMeView from '../views/AssignedToMeView.vue'
 import TasksView from '../views/TasksView.vue'
 
 const router = createRouter({
@@ -28,11 +27,6 @@ const router = createRouter({
       path: '/todo/planned',
       name: 'planned',
       component: PlannedView
-    },
-    {
-      path: '/todo/assignedtome',
-      name: 'assignedtome',
-      component: AssignedToMeView
     },
     {
       path: '/todo/tasks',
