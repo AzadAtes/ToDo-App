@@ -1,21 +1,23 @@
 <script setup>
-  import TaskList from '../components/TaskList.vue';
+  import { computed } from 'vue';
+  import Tasks from '../components/Tasks.vue';
   import TaskAdd from '../components/TaskAdd.vue';
-  import { ref, computed } from 'vue';
+  import { useAddTask } from '../composables/useAddTask';
 
-  let tasks = ref([]);
-  let openTasks = computed(() => tasks.value.filter((tasks) => !tasks.complete))
-  let completedTasks = computed(() => tasks.value.filter((tasks) => tasks.complete))
+  let { addTaskMyDay } = useAddTask();
 
-  const addTask = (task) => tasks.value.push({task: task, complete:false})
+  const props = defineProps({
+    tasks:Array
+  })
+
+  let myTasks = computed(() => props.tasks.filter((tasks) => tasks.myDay))
 </script>
 
 <template>
   <div>
     <h1>My Day</h1>
-    <TaskAdd id="addTask" @add-task="addTask($event)" />
-    <TaskList class="openTasks" :tasks="openTasks"></TaskList>
-    <TaskList class="completedTasks" :canToggle="true" :tasks="completedTasks"> complete </TaskList>
+    <TaskAdd id="addTask" @add-task="addTaskMyDay(props.tasks, $event)" />
+    <Tasks :tasks="myTasks" />
   </div>
 </template>
 

@@ -3,12 +3,13 @@
 
     const props = defineProps({
         tasks: Array,
-        canToggle: Boolean = false
+        canToggle: {type: Boolean,
+                    default: false}
     })
 
     let visible = ref(!props.canToggle)
     let toggleVisibility = () => visible.value = !visible.value
-    let alertTask = (task) => alert('task:\t\t' + task.task + '\n' + 'complete:\t' + task.complete)
+    let logTask = (task) => console.log(task)
 </script>
 
 <template>
@@ -24,13 +25,12 @@
         <div class="title" v-else>
             <p><slot></slot></p>
         </div>
-
         <ul class="taskList" v-if="visible">
             <li class="taskListItem" v-for="task in props.tasks" :key="props.tasks">
                 <label class="checkboxWrapper">
                     <input type="checkbox" v-model="task.complete" />
                 </label>
-                <p @click="alertTask(task)">
+                <p @click="logTask(task)">
                     {{task.task}}
                 </p>
                 <svg class="taskListItem" style="width:24px;height:24px;" viewBox="0 0 24 24">

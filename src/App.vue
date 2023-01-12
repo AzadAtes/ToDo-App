@@ -1,9 +1,11 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import { ref } from 'vue';
 import NavBar from './components/NavBar.vue';
 import SideBar from './components/SideBar.vue';
-</script>
 
+let tasks = ref([]);
+</script>
 
 <template>
   <header>
@@ -11,10 +13,9 @@ import SideBar from './components/SideBar.vue';
   </header>
   <main>
     <SideBar id="sideBar" />
-    <RouterView id="routerView"  />
+    <RouterView :tasks="tasks" id="routerView"  />
   </main>
 </template>
-
 
 <style scoped>
   main {
