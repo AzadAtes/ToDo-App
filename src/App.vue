@@ -1,10 +1,10 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { ref } from 'vue';
 import NavBar from './components/NavBar.vue';
 import SideBar from './components/SideBar.vue';
+import { useStorage } from './composables/useStorage';
 
-let tasks = ref([]);
+let tasks = useStorage('tasks', [])
 </script>
 
 <template>
