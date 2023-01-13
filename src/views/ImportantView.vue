@@ -4,8 +4,6 @@
   import TaskAdd from '../components/TaskAdd.vue';
   import { useAddTask } from '../composables/useAddTask';
 
-  let { addTaskImportant } = useAddTask();
-
   const props = defineProps({
     tasks:Array
   })
@@ -16,7 +14,7 @@
 <template>
   <div>
     <h1>Important</h1>
-    <TaskAdd id="addTask" @add-task="addTaskImportant(props.tasks, $event)" />
+    <TaskAdd id="addTask" @add-task="useAddTask(props.tasks, { task: $event, important: true})" />
     <Tasks :tasks="myTasks" />
   </div>
 </template>
