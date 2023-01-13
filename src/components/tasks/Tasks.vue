@@ -1,5 +1,5 @@
 <script setup>
-  import TaskList from '../components/TaskList.vue';
+  import TaskList from './TaskList.vue';
   import { computed } from 'vue';
 
   const props = defineProps({

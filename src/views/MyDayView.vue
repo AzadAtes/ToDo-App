@@ -1,7 +1,7 @@
 <script setup>
   import { computed } from 'vue';
-  import Tasks from '../components/Tasks.vue';
-  import TaskAdd from '../components/TaskAdd.vue';
+  import Tasks from '../components/tasks/Tasks.vue';
+  import TaskAdd from '../components/tasks/TaskAdd.vue';
   import { useAddTask } from '../composables/useAddTask';
 
   const props = defineProps({
