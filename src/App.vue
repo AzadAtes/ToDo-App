@@ -18,6 +18,10 @@ let tasks = useStorage('tasks', [], true)
 </template>
 
 <style scoped>
+  #navBar {
+    z-index: 999;
+  }
+
   main {
     position: relative;
     top: calc(var(--navBar-height) + var(--navBar-border));
