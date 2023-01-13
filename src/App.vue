@@ -4,7 +4,7 @@ import NavBar from './components/NavBar.vue';
 import SideBar from './components/SideBar.vue';
 import { useStorage } from './composables/useStorage';
 
-let tasks = useStorage('tasks', [])
+let tasks = useStorage('tasks', [], true)
 </script>
 
 <template>

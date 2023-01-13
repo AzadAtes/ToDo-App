@@ -1,14 +1,14 @@
 export function useAddTask() {
-    function addTask (arr, taskName) {
-        arr.push({task : taskName, complete: false, myDay: false, important: false})
+    function addTask (tasks, newTask) {
+        tasks.push({task : newTask, complete: false, myDay: false, important: false})
     }
 
-    function addTaskMyDay (arr, taskName) {
-        arr.push({task : taskName, complete: false, myDay: true, important: false})
+    function addTaskMyDay (tasks, newTask) {
+        tasks.push({task : newTask, complete: false, myDay: true, important: false})
     }
 
-    function addTaskImportant (arr, taskName) {
-        arr.push({task : taskName, complete: false, myDay: false, important: true})
+    function addTaskImportant (tasks, newTask) {
+        tasks.push({task : newTask, complete: false, myDay: false, important: true})
     }
 
     return { addTask, addTaskMyDay, addTaskImportant }

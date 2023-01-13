@@ -16,8 +16,7 @@
         <div class="checkboxWrapper">
           <input type="checkbox" disabled />
         </div>
-        <input type="submit" hidden @click.prevent="addTask">
-        <input type="text" placeholder="Add new Task" v-model="newTask">
+        <input type="text" placeholder="Add new Task" v-model="newTask" @keydown.enter.prevent="addTask">
       </div>
       <div class="footer">
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
