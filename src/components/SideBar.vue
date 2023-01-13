@@ -1,12 +1,14 @@
 <script setup>
   import { RouterLink } from 'vue-router'
+  
+  const emit = defineEmits(['toggleSidebar'])
 </script>
 
 <template>
     <div class="sideBar">
       <div class="sideBarTop">
         <div class="sideBarItem">
-          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <svg id="toggleBtn" @click="emit('toggleSidebar')" style="width:24px;height:24px" viewBox="0 0 24 24">
             <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
           </svg>
         </div>
@@ -72,6 +74,10 @@
   
   .sideBarItem:first-child {
     padding-top: 30px;
+  }
+
+  #toggleBtn:hover {
+    cursor: pointer;
   }
 
   .sideBarLink {
