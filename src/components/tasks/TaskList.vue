@@ -1,6 +1,6 @@
 <script setup>
     import { ref } from 'vue';
-    import task from './Task.vue';
+    import task from './task.vue';
 
     const props = defineProps({
         tasks: Array,
