@@ -4,7 +4,7 @@
 
   const props = defineProps({
     tasks: Array,
-    sidebarVisible: Boolean
+    showSidebar: Boolean
   })
 
   const emit = defineEmits(['toggleSidebar'])
@@ -14,7 +14,7 @@
 
 <template>
   <div>
-    <Tasks :show-completed="showCompleted" :tasks="tasks" :my-tasks="myTasks" :sidebar-visible="sidebarVisible" :options="{ important: true }" @toggle-sidebar="emit('toggleSidebar')">
+    <Tasks :show-completed="showCompleted" :tasks="tasks" :my-tasks="myTasks" :show-sidebar="showSidebar" :options="{ important: true }" @toggle-sidebar="emit('toggleSidebar')">
       <template v-slot:title> Important </template>
       <template v-slot:icon>
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">

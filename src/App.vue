@@ -1,13 +1,12 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import NavBar from './components/NavBar.vue';
 import SideBar from './components/SideBar.vue';
 import { useStorage } from './composables/useStorage';
 
 let tasks = useStorage('tasks', [], true)
 let showSidebar = ref(true)
-let sidebarVisible = computed(() => { return showSidebar.value })
 </script>
 
 <template>
@@ -16,7 +15,7 @@ let sidebarVisible = computed(() => { return showSidebar.value })
   </header>
   <main>
     <SideBar id="sideBar" v-if="showSidebar" @toggle-sidebar="showSidebar = !showSidebar" />
-    <RouterView id="routerView" :tasks="tasks" :sidebar-visible="sidebarVisible" @toggle-sidebar="showSidebar = !showSidebar" />
+    <RouterView id="routerView" :tasks="tasks" :show-sidebar="showSidebar" @toggle-sidebar="showSidebar = !showSidebar" />
   </main>
 </template>
 

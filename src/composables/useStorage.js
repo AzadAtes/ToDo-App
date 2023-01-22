@@ -1,4 +1,4 @@
-import { reactive, watch } from "vue"
+import { ref, watch } from "vue"
 
 export function useStorage(key, val = null, opt = false) {
 
@@ -17,9 +17,9 @@ export function useStorage(key, val = null, opt = false) {
     let storedVal = read()
 
     if (storedVal) {
-        val = reactive(storedVal)
+        val = ref(storedVal)
     }   else {
-        val = reactive(val)
+        val = ref(val)
         write()
     }
 
