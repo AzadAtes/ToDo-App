@@ -2,7 +2,6 @@
   import Tasks from '../components/tasks/Tasks.vue';
 
   const props = defineProps({
-    tasks:Array,
     showSidebar: Boolean
   })
 
@@ -11,7 +10,7 @@
 
 <template>
   <div>
-    <Tasks :show-completed="showCompleted" :tasks="tasks" :my-tasks="tasks" :show-sidebar="showSidebar" :options="{ myDay: true }" @toggle-sidebar="emit('toggleSidebar')">
+    <Tasks :show-completed="showCompleted" :show-sidebar="showSidebar" @toggle-sidebar="emit('toggleSidebar')">
       <template v-slot:title> Tasks </template>
       <template v-slot:icon>
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">

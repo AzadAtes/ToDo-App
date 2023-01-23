@@ -1,6 +1,6 @@
 import { ref, watch } from "vue"
 
-export function useStorage(key, val = null, opt = false) {
+export function useStorage(key, val = null, watchDeep = false) {
 
     function read(){
         return JSON.parse(localStorage.getItem(key))
@@ -23,7 +23,7 @@ export function useStorage(key, val = null, opt = false) {
         write()
     }
 
-    watch(val.value, () => {write()}, {deep: opt})
+    watch(val.value, () => {write()}, {deep: watchDeep})
 
     return val
 }

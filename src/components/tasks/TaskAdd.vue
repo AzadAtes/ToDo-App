@@ -1,11 +1,16 @@
 <script setup>
     import { ref } from 'vue';
+    import { useTasksStore } from '../../stores/tasksStore';
 
-    const emit = defineEmits()
+    const props = defineProps({
+      options: Object,
+    })
+
+    let { addTask } = useTasksStore(); 
     let newTask = ref("")
 
-    const addTask = () => {
-      emit('addTask', newTask.value)
+    const add = () => {
+      addTask(newTask.value , props.options)
       newTask.value = ""
     }
 </script>
@@ -16,7 +21,7 @@
         <div class="checkboxWrapper">
           <input type="checkbox" disabled />
         </div>
-        <input type="text" placeholder="Add new Task" v-model="newTask" @keydown.enter.prevent="addTask">
+        <input type="text" placeholder="Add new Task" v-model="newTask" @keydown.enter.prevent="add">
       </div>
       <div class="footer">
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -28,7 +33,7 @@
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
           <path fill="currentColor" d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z" />
         </svg>
-        <input type="submit" value="add" @click.prevent="addTask" />
+        <input type="submit" value="add" @click.prevent="add" />
       </div>
     </form>
 </template>

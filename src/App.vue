@@ -1,12 +1,12 @@
 <script setup>
-import { RouterView } from 'vue-router'
 import { ref } from 'vue';
+import { RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue';
 import SideBar from './components/SideBar.vue';
-import { useStorage } from './composables/useStorage';
 
-let tasks = useStorage('tasks', [], true)
 let showSidebar = ref(true)
+
+let toggleSidebar = () => { showSidebar.value = !showSidebar.value }
 </script>
 
 <template>
@@ -14,8 +14,8 @@ let showSidebar = ref(true)
     <NavBar id="navBar" />
   </header>
   <main>
-    <SideBar id="sideBar" v-if="showSidebar" @toggle-sidebar="showSidebar = !showSidebar" />
-    <RouterView id="routerView" :tasks="tasks" :show-sidebar="showSidebar" @toggle-sidebar="showSidebar = !showSidebar" />
+    <SideBar id="sideBar" v-if="showSidebar" @toggle-sidebar="toggleSidebar" />
+    <RouterView id="routerView" :show-sidebar="showSidebar" @toggle-sidebar="toggleSidebar" />
   </main>
 </template>
 

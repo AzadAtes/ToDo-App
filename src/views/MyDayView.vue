@@ -1,20 +1,16 @@
 <script setup>
-  import { computed } from 'vue';
   import Tasks from '../components/tasks/Tasks.vue';
 
   const props = defineProps({
-    tasks: Array,
     showSidebar: Boolean
   })
 
   const emit = defineEmits(['toggleSidebar'])
-
-  let myTasks = computed(() => props.tasks.filter((tasks) => tasks.myDay))
 </script>
 
 <template>
   <div>
-    <Tasks :show-completed="showCompleted" :tasks="tasks" :my-tasks="myTasks" :show-sidebar="showSidebar" :options="{ myDay: true }"  @toggle-sidebar="emit('toggleSidebar')">
+    <Tasks :show-completed="showCompleted" :options="{ myDay: true }" :show-sidebar="showSidebar"  @toggle-sidebar="emit('toggleSidebar')">
       <template v-slot:title> My Day </template>
       <template v-slot:icon>
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
