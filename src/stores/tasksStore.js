@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
-import { useStorage } from '../composables/useStorage';
+import { useLocalStorage } from '../composables/useLocalStorage';
 
 
 export const useTasksStore = defineStore('tasks', () => {
-  const tasks = useStorage('tasks', [])
+  const tasks = useLocalStorage('tasks', [])
 
   function getTasks() {
     return tasks
