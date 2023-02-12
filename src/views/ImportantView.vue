@@ -10,7 +10,7 @@
 
 <template>
   <div>
-    <Tasks :show-completed="showCompleted" :options="{ important: true }" :show-sidebar="showSidebar" @toggle-sidebar="emit('toggleSidebar')">
+    <Tasks :options="{ important: true }" :show-sidebar="showSidebar" @toggle-sidebar="emit('toggleSidebar')">
       <template v-slot:title> Important </template>
       <template v-slot:icon>
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">

@@ -38,7 +38,6 @@
     max-width: var(--navBar-searchBar-Width);
     flex-basis: var(--navBar-searchBar-Width);
     height: calc(var(--navBar-height) - 20px);
-    padding: 0;
     border-radius: 5px;
   }
 

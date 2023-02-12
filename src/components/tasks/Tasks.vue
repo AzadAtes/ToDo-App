@@ -14,13 +14,18 @@
   
   const emit = defineEmits(['toggleSidebar'])
 
-  let { getTasks } = useTasksStore();
+  const taskStore = useTasksStore();
+  taskStore.getTasks()
+
+  const makeImportant = (task) => {
+    taskStore.updateTask(task, {important: !task.important})
+  }
 
   let myTasks = computed(() => {
-    let tasks = getTasks().value
+    let tasks = taskStore.tasks
     for (let i=0 ; i < Object.keys(props.options).length; i++) {
       let currKey = Object.keys(props.options)[i]
-      tasks = tasks.filter((tasks) => tasks[currKey] == props.options[currKey])
+      tasks = tasks.filter((task) => task[currKey] == props.options[currKey])
     }
     return tasks
   })
@@ -44,8 +49,8 @@
       </svg>
     </div>
     <TaskAdd id="addTask" :options="props.options" />
-    <TaskList :tasks="openTasks"></TaskList>
-    <TaskList v-if="showCompleted" :tasks="completedTasks" canToggle> complete </TaskList>
+    <TaskList :tasks="openTasks" @make-important="makeImportant"></TaskList>
+    <TaskList v-if="showCompleted" @make-important="makeImportant" :tasks="completedTasks" canToggle> complete </TaskList>
   </div>
 </template>
 

@@ -8,6 +8,8 @@
                     default: false}
     })
 
+    const emit = defineEmits(['makeImportant'])
+
     let visible = ref(!props.canToggle)
     let toggleVisibility = () => visible.value = !visible.value
 </script>
@@ -26,7 +28,7 @@
             <p><slot></slot></p>
         </div>
         <ul id="taskList" v-if="visible">
-            <task class="taskListItem" v-for="task in props.tasks" :task="task" :key="props.tasks" />
+            <task class="taskListItem" @make-important="emit('makeImportant', task)" v-for="task in props.tasks" :task="task" :key="task._id" />
         </ul>
     </div>
 </template>
