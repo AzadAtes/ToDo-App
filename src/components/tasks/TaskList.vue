@@ -1,6 +1,7 @@
 <script setup>
     import { ref } from 'vue';
     import task from './task.vue';
+    import iconMenu from '../icons/iconMenu.vue';
 
     const props = defineProps({
         tasks: Array,
@@ -19,16 +20,14 @@
         <div class="title" v-if="canToggle" :class="visible ? '' : 'toggled'">
             <button @click="toggleVisibility">
                 <p><slot></slot></p>
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M8 9H16L12 16" />
-                </svg>
+                <iconMenu />
             </button>
         </div>
         <div class="title" v-else>
             <p><slot></slot></p>
         </div>
         <ul id="taskList" v-if="visible">
-            <task class="taskListItem" @make-important="emit('makeImportant', task)" v-for="task in props.tasks" :task="task" :key="task._id" />
+            <task class="taskListItem" v-for="task in props.tasks" @make-important="emit('makeImportant', task)" :task="task" :key="task._id" />
         </ul>
     </div>
 </template>
@@ -37,16 +36,13 @@
     .toggled {
         top: -20px !important;
     }
-
     .title {    
         display: flex;
         align-items: center;
         position: relative;
         left: 5px;
         top: 20px;
-
     }
-
     .title button {
         display: flex;
         align-items: center;
