@@ -8,7 +8,6 @@ const props = defineProps({
 
 const emit = defineEmits(['makeImportant'])
 
-
 let logTask = (task) => console.log(task)
 </script>
 

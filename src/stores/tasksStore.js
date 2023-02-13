@@ -15,13 +15,13 @@ export const useTasksStore = defineStore('tasks', () => {
     }
   }
 
-  const addTask = async (task, { complete = false, important = false, myDay = false}) => {
+  const addTask = async (task, { complete = false, important = false, myDay = false, date =  {}}) => {
 
     if (!task.replace(/\s+/g, '').length) {
       return
     }
 
-    const newTask = {"task" : task, "complete": complete, "myDay": myDay, "important": important }
+    const newTask = {"task" : task, "complete": complete, "myDay": myDay, "important": important, "date": date}
     tasks.value.push(newTask)
     
     try {

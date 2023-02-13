@@ -5,8 +5,10 @@ import NavBar from './components/NavBar.vue';
 import SideBar from './components/SideBar.vue';
 
 let showSidebar = ref(true)
-
 let toggleSidebar = () => { showSidebar.value = !showSidebar.value }
+
+const date = new Date()
+console.log(date.getDate(), date.getMonth() + 1, date.getFullYear());
 </script>
 
 <template>

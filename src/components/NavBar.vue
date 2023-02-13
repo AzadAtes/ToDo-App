@@ -19,7 +19,7 @@
     width: 100%;
     height: var(--navBar-height);
 
-    background-color:#2564cf;
+    background-color:var(--navbar-color);
     color: white;
     border-bottom: var(--navBar-border) solid lightgrey;
 

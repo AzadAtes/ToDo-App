@@ -83,7 +83,7 @@
   }
 
   #sideBarNewList > * {
-    color: #2564cf;
+    color: var(--accent-color);
   }
 
 </style>

@@ -10,7 +10,7 @@
 
 <template>
   <div>
-    <Tasks :options="{ myDay: true }" :show-sidebar="showSidebar"  @toggle-sidebar="emit('toggleSidebar')">
+    <Tasks :options="{ myDay: true, date: { day: 3, month: 3, year: 2023 }}" :show-sidebar="showSidebar"  @toggle-sidebar="emit('toggleSidebar')">
       <template v-slot:title> My Day </template>
       <template v-slot:icon>
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">

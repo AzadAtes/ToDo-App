@@ -2,8 +2,9 @@
     import { ref } from 'vue';
     import { useTasksStore } from '../../stores/tasksStore';
     import iconCalendarOutline from '../icons/iconCalendarOutline.vue';
-    import iconBellOutline from '../icons/iconBellOutline.vue';
     import iconRepeat from '../icons/iconRepeat.vue';
+    import Datepicker from '@vuepic/vue-datepicker';
+    import '@vuepic/vue-datepicker/dist/main.css'
 
     const props = defineProps({
       options: Object,
@@ -11,10 +12,16 @@
 
     let { addTask } = useTasksStore(); 
     let newTask = ref("")
+    let taskDate = ref();
 
     const add = () => {
+      if (taskDate.value) {
+        props.options.date = {day: taskDate.value.getDate(), month: taskDate.value.getMonth()+1, year: taskDate.value.getFullYear()}
+        console.log(props.options);
+      }
       addTask(newTask.value , props.options)
       newTask.value = ""
+      taskDate.value = ""
     }
 </script>
 
@@ -27,9 +34,12 @@
       <input type="text" placeholder="Add new Task" v-model="newTask" @keydown.enter.prevent="add" />
     </div>
     <div class="footer">
-      <iconCalendarOutline />
-      <iconBellOutline />
-      <iconRepeat />
+        <Datepicker id="datePicker" v-model="taskDate" :enable-time-picker="false">
+        <template #input-icon>
+            <iconCalendarOutline />
+        </template>
+      </Datepicker>
+      <iconRepeat class="footerIcon" />
       <input type="submit" value="add" @click.prevent="add" />
     </div>
   </form>
@@ -50,19 +60,16 @@
     align-items: center;
     width: 45px;
   }
-
   .newTask input[type=text] {
     flex: 1;
     border-style: hidden;
-    color: #2564cf;
+    color: var(--accent-color);
   }
-
   .newTask input[type=text]:focus {
     outline: none;
     color: black;
     border-style: hidden;
   }
-
   .footer {
     display: flex;
     align-items: center;
@@ -71,17 +78,19 @@
     background-color: #faf9f8;
     border: 1px solid lightgrey;
   }
-
-  .footer > * {
+  .footer input[type=submit] {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+  .footerIcon{
+    color: gray;
     padding: 5px;
     margin: 5px
   }
-  
-  .footer input[type=submit] {
-    margin-left: auto;
+  #datePicker svg:first-child {
+    padding: 6px 0px 0px 10px;
   }
-
-  .footer svg {
-    color: gray;
+  #datePicker input:first-child {
+    padding-left: 40px;
   }
 </style>
