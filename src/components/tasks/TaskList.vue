@@ -1,7 +1,7 @@
 <script setup>
     import { ref } from 'vue';
     import task from './task.vue';
-    import iconMenu from '../icons/iconMenu.vue';
+    import iconTriangleDown from '../icons/iconTriangleDown.vue';
 
     const props = defineProps({
         tasks: Array,
@@ -20,7 +20,7 @@
         <div class="title" v-if="canToggle" :class="visible ? '' : 'toggled'">
             <button @click="toggleVisibility">
                 <p><slot></slot></p>
-                <iconMenu />
+                <iconTriangleDown />
             </button>
         </div>
         <div class="title" v-else>
