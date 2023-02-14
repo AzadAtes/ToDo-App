@@ -33,6 +33,17 @@
 </template>
 
 <style scoped>
+    .taskListItem  {
+        display: flex;
+        align-items: center;
+        height: 45px;
+        border-radius: 5px;
+        background-color: white;
+        border: 1px solid lightgrey;
+    }
+    .taskListItem:hover {
+        cursor: pointer;
+    }
     .toggled {
         top: -20px !important;
     }

@@ -14,12 +14,19 @@
     let newTask = ref("")
     let taskDate = ref();
 
+    // REFACTOR NEEDED. It works, but its messy. !!!
     const add = () => {
-      if (taskDate.value) {
-        props.options.date = {day: taskDate.value.getDate(), month: taskDate.value.getMonth()+1, year: taskDate.value.getFullYear()}
-        console.log(props.options);
+      let today = new Date()
+      let optionsCopy = JSON.parse(JSON.stringify(props.options))
+      delete optionsCopy.date
+      if (props.options.planned === true) {
+        optionsCopy.date = {day: today.getDate(), month: today.getMonth()+1, year: today.getFullYear()}
       }
-      addTask(newTask.value , props.options)
+      if (taskDate.value) {
+        optionsCopy.planned = true
+        optionsCopy.date = {day: taskDate.value.getDate(), month: taskDate.value.getMonth()+1, year: taskDate.value.getFullYear()}
+      }
+      addTask(newTask.value , optionsCopy)
       newTask.value = ""
       taskDate.value = ""
     }
@@ -45,7 +52,7 @@
   </form>
 </template>
 
-<style>
+<style scoped>
   .newTask  {
     display: flex;
     align-items: center;

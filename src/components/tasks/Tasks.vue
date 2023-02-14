@@ -11,25 +11,65 @@
       type: Object,
       default: {}
     },
+    filterLogic: {
+      type: String,
+      default: 'OR'
+    },
     showSidebar: Boolean,
   })
   
   const emit = defineEmits(['toggleSidebar'])
 
-  const taskStore = useTasksStore();
+  const taskStore = useTasksStore()
   taskStore.getTasks()
 
   const makeImportant = (task) => {
     taskStore.updateTask(task, {important: !task.important})
   }
+
+  // REFACTOR NEEDED. It works, but its messy. !!!
   let myTasks = computed(() => {
-    let tasks = taskStore.tasks
-    for (let i=0 ; i < Object.keys(props.options).length; i++) {
-      let currKey = Object.keys(props.options)[i]
-      tasks = tasks.filter((task) => task[currKey] == props.options[currKey])
+    if (props.filterLogic === 'OR'){
+      let tasks = [...taskStore.tasks]
+      if (Object.keys(props.options).length){
+        tasks = tasks.filter((task) => {
+          for (let i=0 ; i < Object.keys(props.options).length; i++){
+            let currKey = Object.keys(props.options)[i]
+            if ( currKey == "date" && props.options.date) {
+              for (let j=0 ; j < Object.keys(props.options.date).length; j++) {
+                let currInnerKey = Object.keys(props.options.date)[j]
+                if (task.date[currInnerKey] !== props.options.date[currInnerKey]) {
+                  return false
+                } else {
+                  return true
+                }
+              }
+            } 
+            if (task[currKey] == props.options[currKey]) {
+              return true
+            }
+          }
+          return false
+        })
+      }
+      return tasks
+    } else {
+      let tasks = [...taskStore.tasks]
+      for (let i=0 ; i < Object.keys(props.options).length; i++) {
+        let currKey = Object.keys(props.options)[i]
+        if ( currKey == "date" && props.options.date) {
+          for (let j=0 ; j < Object.keys(props.options.date).length; j++) {
+            currKey = Object.keys(props.options.date)[j]
+            tasks = tasks.filter((task) => task.date[currKey] == props.options.date[currKey])
+          }
+        } else {
+          tasks = tasks.filter((task) => task[currKey] == props.options[currKey])
+        }
+      }
+      return tasks
     }
-    return tasks
   })
+
   let openTasks = computed(() => myTasks.value.filter((tasks) => !tasks.complete))
   let completedTasks = computed(() => myTasks.value.filter((tasks) => tasks.complete))
   let showCompleted = ref(true)

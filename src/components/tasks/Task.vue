@@ -16,42 +16,43 @@ let logTask = (task) => console.log(task)
         <label class="checkboxWrapper">
             <input type="checkbox" v-model="props.task.complete" />
         </label>
-        <p @click="logTask(task)">
-            {{props.task.task}}
-        </p>
+        <div @click="logTask(task)" id="textWrapper">
+            <p id="taskName">{{props.task.task}}</p>
+            <p v-if="props.task.date.day != null" id="taskDate">{{ props.task.date.day }}.{{ props.task.date.month }}.{{ props.task.date.year }}</p>
+        </div>
         <div @click="emit('makeImportant', props.task)">
-            <iconImportant class="taskListItem" v-if="props.task.important" />
-            <IconImportantOutline class="taskListItem" v-else />
+            <iconImportant class="icon" v-if="props.task.important" />
+            <IconImportantOutline class="icon" v-else />
         </div>
     </li>
 </template>
 
-<style>
-    .taskListItem  {
-        display: flex;
-        align-items: center;
-        height: 45px;
-        border-radius: 5px;
-        background-color: white;
-        border: 1px solid lightgrey;
-    }
-
-    .taskListItem:hover, .checkboxWrapper:hover, .checkboxWrapper input:hover {
-        cursor: pointer;
-    }
-
+<style scoped>
     .checkboxWrapper {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 45px;
     }
-
-    .taskListItem p {
+    #textWrapper {
+        display: flex;
         flex: 1;
+        flex-direction: column;
+        justify-content: center;
     }
-
-    .taskListItem svg {
+    #taskName, #taskDate {
+        flex: 1;
+        margin: 0px;
+        padding: 0px;
+    }
+    #taskName {
+        font-size: large;
+    }
+    #taskDate {
+        color: gray;
+        font-size: small;
+    }
+    .icon{
         margin-left: auto;
         margin-right: 10px;
         border: none;
