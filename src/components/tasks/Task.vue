@@ -18,7 +18,10 @@ let logTask = (task) => console.log(task)
         </label>
         <div @click="logTask(task)" id="textWrapper">
             <p id="taskName">{{props.task.task}}</p>
-            <p v-if="props.task.date.day != null" id="taskDate">{{ props.task.date.day }}.{{ props.task.date.month }}.{{ props.task.date.year }}</p>
+            <div id="footer">
+                <p v-if="props.task.myDay" class="footerItem">MyDay</p>
+                <p v-if="props.task.date.day != null" class="footerItem">{{ props.task.date.day }}.{{ props.task.date.month }}.{{ props.task.date.year }}</p>
+            </div>
         </div>
         <div @click="emit('makeImportant', props.task)">
             <iconImportant class="icon" v-if="props.task.important" />
@@ -28,6 +31,10 @@ let logTask = (task) => console.log(task)
 </template>
 
 <style scoped>
+    #footer{
+        display: flex;
+        gap: 10px;
+    }
     .checkboxWrapper {
         display: flex;
         justify-content: center;
@@ -39,16 +46,16 @@ let logTask = (task) => console.log(task)
         flex: 1;
         flex-direction: column;
         justify-content: center;
+        gap: 2px;
     }
-    #taskName, #taskDate {
-        flex: 1;
+    #taskName, .footerItem {
         margin: 0px;
         padding: 0px;
     }
     #taskName {
         font-size: large;
     }
-    #taskDate {
+    .footerItem {
         color: gray;
         font-size: small;
     }

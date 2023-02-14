@@ -29,8 +29,8 @@
 
   // REFACTOR NEEDED. It works, but its messy. !!!
   let myTasks = computed(() => {
+    let tasks = [...taskStore.tasks]
     if (props.filterLogic === 'OR'){
-      let tasks = [...taskStore.tasks]
       if (Object.keys(props.options).length){
         tasks = tasks.filter((task) => {
           for (let i=0 ; i < Object.keys(props.options).length; i++){
@@ -54,7 +54,6 @@
       }
       return tasks
     } else {
-      let tasks = [...taskStore.tasks]
       for (let i=0 ; i < Object.keys(props.options).length; i++) {
         let currKey = Object.keys(props.options)[i]
         if ( currKey == "date" && props.options.date) {
