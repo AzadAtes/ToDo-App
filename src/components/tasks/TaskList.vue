@@ -36,7 +36,7 @@
     .taskListItem  {
         display: flex;
         align-items: center;
-        height: 45px;
+        padding: 5px 0px 5px 0px;
         border-radius: 5px;
         background-color: white;
         border: 1px solid lightgrey;
