@@ -5,9 +5,9 @@
 <template>
     <div id="navBar">
       <div class="navBarItem">To Do</div>
-      <input class="navBarItem" type="text" placeholder="Search..">
+      <input class="navBarItem disabledItem" id="searchBar" type="text" placeholder="Search.." disabled>
       <div class="navBarItem">
-        <iconSettingsOutline />
+        <iconSettingsOutline id="settingsIcon" />
       </div>
     </div>
 </template>
@@ -18,7 +18,6 @@
     inset: 0;
     width: 100%;
     height: var(--navBar-height);
-
     background-color:var(--navbar-color);
     color: white;
     border-bottom: var(--navBar-border) solid lightgrey;
@@ -39,6 +38,7 @@
     flex-basis: var(--navBar-searchBar-Width);
     height: calc(var(--navBar-height) - 20px);
     border-radius: 5px;
+    outline: none;
   }
 
   .navBarItem:last-child {
@@ -49,5 +49,12 @@
     position: relative;
     top: 2px;
     width: 28px;
+  }
+
+  #searchBar:disabled{
+    background-color: white;
+  }
+  #searchBar, #settingsIcon{
+    cursor: not-allowed;
   }
 </style>

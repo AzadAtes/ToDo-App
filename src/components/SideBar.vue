@@ -5,9 +5,15 @@
   import iconStarOutline from './icons/iconStarOutline.vue'
   import iconCalendarOutline from './icons/iconCalendarOutline.vue';
   import iconHouseOutline from './icons/iconHouseOutline.vue';
-  
-  
+  import iconPlus from './icons/iconPlus.vue';
+  import { useEditBarStore } from '../stores/editBarStore';
+    
   const emit = defineEmits(['toggleSidebar'])
+
+  const editBarStore = useEditBarStore()
+  const hideSideBar = () => {
+    editBarStore.visible = false
+  }
 </script>
 
 <template>
@@ -18,26 +24,24 @@
         </div>
         <div class="sideBarItem">
           <iconSun />
-          <router-link class="sideBarLink" to="/todo/myday">My Day</router-link>
+          <router-link class="sideBarLink" to="/todo/myday" @click="hideSideBar">My Day</router-link>
         </div>
         <div class="sideBarItem">
           <iconStarOutline />
-          <router-link class="sideBarLink" to="/todo/important">Important</router-link>
+          <router-link class="sideBarLink" to="/todo/important" @click="hideSideBar">Important</router-link>
         </div>
         <div class="sideBarItem">
           <iconCalendarOutline />
-          <router-link class="sideBarLink" to="/todo/planned">Planned</router-link>
+          <router-link class="sideBarLink" to="/todo/planned" @click="hideSideBar">Planned</router-link>
         </div>
         <div class="sideBarItem">
-          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22" />
-          </svg>
-          <router-link class="sideBarLink" to="/todo/tasks">Tasks</router-link>
+          <iconHouseOutline />
+          <router-link class="sideBarLink" to="/todo/tasks" @click="hideSideBar">Tasks</router-link>
         </div>
       </div>
       <div class="sideBarBottom">
         <div class="sideBarItem" id="sideBarNewList">
-          <iconHouseOutline />
+          <iconPlus />
           <div class="sideBarLink">New List</div>
         </div>
       </div>
@@ -84,6 +88,6 @@
 
   #sideBarNewList > * {
     color: var(--accent-color);
+    cursor:not-allowed;
   }
-
 </style>

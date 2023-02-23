@@ -46,7 +46,7 @@
             <iconCalendarOutline />
         </template>
       </Datepicker>
-      <iconRepeat class="footerIcon" />
+      <iconRepeat class="footerIcon" id="repeatIcon" />
       <input type="submit" value="add" @click.prevent="add" />
     </div>
   </form>
@@ -99,5 +99,8 @@
   }
   #datePicker input:first-child {
     padding-left: 40px;
+  }
+  #repeatIcon{
+    cursor: not-allowed;
   }
 </style>

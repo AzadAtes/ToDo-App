@@ -16,7 +16,6 @@ export const useTasksStore = defineStore('tasks', () => {
   }
 
   const addTask = async (task, { complete = false, important = false, myDay = false, planned = false, date = { day: null, month: null, year: null }}) => {
-
     if (!task.replace(/\s+/g, '').length) {
       return
     }
@@ -71,7 +70,11 @@ export const useTasksStore = defineStore('tasks', () => {
 
   const deleteTask = async (task) => {
     const index = tasks.value.indexOf(task)
-    delete tasks.value[index]
+    // the following line causes errors since VUE cant access the tasks properties.
+    // the error must be fixed or another method is required to put the sliced tasks back to their previous position in the array.
+    // simply splicing again can change the order of the array when multiple values are deleted before the catch.
+
+    // delete tasks.value[index]
     try {
       await fetch(`http://127.0.0.1:4444/api/v1/tasks/${task._id}`, {
         method: 'DELETE',

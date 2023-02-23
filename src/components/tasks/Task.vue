@@ -1,29 +1,30 @@
 <script setup>
 import iconImportant from '../icons/iconStar.vue'
 import IconImportantOutline from '../icons/iconStarOutline.vue';
+import { useEditBarStore } from '../../stores/editBarStore';    
+
+const editBarStore = useEditBarStore()
 
 const props = defineProps({
     task: Object
 })
 
 const emit = defineEmits(['makeImportant'])
-
-let logTask = (task) => console.log(task)
 </script>
 
 <template>
-    <li>
+    <li @click="editBarStore.editTask(props.task)">
         <label class="checkboxWrapper">
             <input type="checkbox" v-model="props.task.complete" />
         </label>
-        <div @click="logTask(task)" id="textWrapper">
+        <div id="textWrapper">
             <p id="taskName">{{props.task.task}}</p>
             <div id="footer">
                 <p v-if="props.task.myDay" class="footerItem">MyDay</p>
                 <p v-if="props.task.date.day != null" class="footerItem">{{ props.task.date.day }}.{{ props.task.date.month }}.{{ props.task.date.year }}</p>
             </div>
         </div>
-        <div @click="emit('makeImportant', props.task)">
+        <div @click="emit('makeImportant')">
             <iconImportant class="icon" v-if="props.task.important" />
             <IconImportantOutline class="icon" v-else />
         </div>

@@ -40,6 +40,7 @@
         border-radius: 5px;
         background-color: white;
         border: 1px solid lightgrey;
+        min-height: 40px;
     }
     .taskListItem:hover {
         cursor: pointer;

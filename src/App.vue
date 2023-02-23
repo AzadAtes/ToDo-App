@@ -4,11 +4,12 @@ import { RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue';
 import SideBar from './components/SideBar.vue';
 import editBar from './components/editBar.vue';
+import { useEditBarStore } from './stores/editBarStore';
 
 let showSidebar = ref(true)
-let showEditBar = ref(true)
 let toggleSidebar = () => { showSidebar.value = !showSidebar.value }
-let toggleEditBar = () => { showEditBar.value = !showEditBar.value }
+
+const editBarStore = useEditBarStore()
 
 const date = new Date()
 console.log(date.getDate(), date.getMonth() + 1, date.getFullYear());
@@ -20,8 +21,8 @@ console.log(date.getDate(), date.getMonth() + 1, date.getFullYear());
   </header>
   <main>
     <SideBar id="sideBar" v-if="showSidebar" @toggle-sidebar="toggleSidebar" />
-    <RouterView id="routerView" :show-sidebar="showSidebar" @toggle-sidebar="toggleSidebar" :class="{ marginRight: showEditBar, marginLeft: showSidebar }" />
-    <editBar id="editBar" v-if="showEditBar" @toggle-edit-bar="toggleEditBar"/>
+    <RouterView id="routerView" :show-sidebar="showSidebar" @toggle-sidebar="toggleSidebar" :class="{ marginRight: editBarStore.visible, marginLeft: showSidebar }" />
+    <editBar id="editBar" v-if="editBarStore.visible" />
   </main>
 </template>
 
