@@ -1,15 +1,15 @@
 <script setup>
-import iconImportant from '../icons/iconStar.vue'
-import IconImportantOutline from '../icons/iconStarOutline.vue';
-import { useEditBarStore } from '../../stores/editBarStore';    
+    import iconImportant from '../icons/iconStar.vue'
+    import IconImportantOutline from '../icons/iconStarOutline.vue';
+    import { useEditBarStore } from '../../stores/editBarStore';    
 
-const editBarStore = useEditBarStore()
+    const editBarStore = useEditBarStore()
 
-const props = defineProps({
-    task: Object
-})
+    const props = defineProps({
+        task: Object
+    })
 
-const emit = defineEmits(['makeImportant'])
+    const emit = defineEmits(['makeImportant'])
 </script>
 
 <template>
@@ -24,7 +24,7 @@ const emit = defineEmits(['makeImportant'])
                 <p v-if="props.task.date.day != null" class="footerItem">{{ props.task.date.day }}.{{ props.task.date.month }}.{{ props.task.date.year }}</p>
             </div>
         </div>
-        <div @click="emit('makeImportant')">
+        <div @click="() => emit('makeImportant', props.task)">
             <iconImportant class="icon" v-if="props.task.important" />
             <IconImportantOutline class="icon" v-else />
         </div>

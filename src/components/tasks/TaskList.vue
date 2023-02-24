@@ -27,7 +27,7 @@
             <p><slot></slot></p>
         </div>
         <ul id="taskList" v-if="visible">
-            <task class="taskListItem" v-for="task in props.tasks" @make-important="emit('makeImportant', task)" :task="task" :key="task._id" />
+            <task class="taskListItem" v-for="task in props.tasks" @make-important="(task) => emit('makeImportant', task)" :task="task" :key="task._id" />
         </ul>
     </div>
 </template>
