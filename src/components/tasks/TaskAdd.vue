@@ -25,6 +25,7 @@
       if (taskDate.value) {
         optionsCopy.planned = true
         optionsCopy.date = {day: taskDate.value.getDate(), month: taskDate.value.getMonth()+1, year: taskDate.value.getFullYear()}
+        optionsCopy.fullDate = taskDate.value
       }
       addTask(newTask.value , optionsCopy)
       newTask.value = ""
@@ -41,13 +42,13 @@
       <input type="text" placeholder="Add new Task" v-model="newTask" @keydown.enter.prevent="add" />
     </div>
     <div class="footer">
-        <Datepicker id="datePicker" v-model="taskDate" :enable-time-picker="false">
+      <Datepicker id="datePicker" v-model="taskDate" :enable-time-picker="false">
         <template #input-icon>
             <iconCalendarOutline />
         </template>
       </Datepicker>
       <iconRepeat class="footerIcon" id="repeatIcon" />
-      <input type="submit" value="add" @click.prevent="add" />
+      <input type="submit" value="add" @click.prevent="add" :class="newTask.length ? 'colorAccent' : 'colorGrey'" />
     </div>
   </form>
 </template>
@@ -88,6 +89,10 @@
   .footer input[type=submit] {
     margin-left: auto;
     margin-right: 10px;
+    padding: 5px 10px 5px 10px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
   }
   .footerIcon{
     color: gray;
@@ -102,5 +107,11 @@
   }
   #repeatIcon{
     cursor: not-allowed;
+  }
+  .colorAccent{
+    color: var(--accent-color);
+  }
+  .colorGrey{
+    color: grey;
   }
 </style>

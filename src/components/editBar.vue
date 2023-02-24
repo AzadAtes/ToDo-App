@@ -3,6 +3,8 @@
     import IconImportantOutline from '../components/icons/iconStarOutline.vue';
     import iconSun from '../components/icons/iconSun.vue';
     import iconTrash from '../components/icons/iconTrash.vue';
+    import iconCalendarOutline from '../components/icons/iconCalendarOutline.vue';
+    import Datepicker from '@vuepic/vue-datepicker';
     import { useEditBarStore } from '../stores/editBarStore';    
     import { useTasksStore } from '../stores/tasksStore';
     import { getCurrentInstance } from 'vue'
@@ -17,6 +19,13 @@
         prevVal = editBarStore.currTask.task
     }
 
+    const updateTaskDate = () => {
+        editBarStore.currTask.date.day = editBarStore.currTask.fullDate.getDate()
+        editBarStore.currTask.date.month = editBarStore.currTask.fullDate.getMonth()+1
+        editBarStore.currTask.date.year = editBarStore.currTask.fullDate.getFullYear()
+        taskStore.updateTask(editBarStore.currTask)
+    }
+
     const changeTaskName = (val) => {
         if(val.replace(/\s+/g, '').length){
             editBarStore.currTask.task = val
@@ -24,7 +33,7 @@
         }
     }
 
-    const updateTask = (val) => {
+    const updateTaskName = (val) => {
         if(val.replace(/\s+/g, '').length){
             editBarStore.currTask.task = val
             taskStore.updateTask(editBarStore.currTask)
@@ -48,6 +57,7 @@
         editBarStore.visible = false
         taskStore.deleteTask(editBarStore.currTask)
     }
+    console.log(editBarStore.currTask);
 </script>
 
 <template>
@@ -59,9 +69,14 @@
                     :value="editBarStore.currTask.task"
                     @focus="updatePrevVal()"
                     @input="changeTaskName($event.target.value)"
-                    @blur= "updateTask($event.target.value)"
+                    @blur= "updateTaskName($event.target.value)"
                 />
             </div>
+            <Datepicker id="datePicker" v-model="editBarStore.currTask.fullDate" :enable-time-picker="false" @closed= "updateTaskDate">
+                <template #input-icon>
+                    <iconCalendarOutline />
+                </template>
+            </Datepicker>
             <div class="itemWrapper colorAccent" v-if="editBarStore.currTask.important" @click="toggleImportant">
                 <iconImportant />
                 <p>Important</p>
@@ -134,6 +149,17 @@
         background-color: var(--background-color);
         right: 0;
         top: calc(var(--navBar-height) + 1px);
+    }
+    #datePicker{
+        position: relative;
+        bottom: 10px;
+        width: 95%;
+    }
+    #datePicker svg:first-child {
+        padding: 6px 0px 0px 10px;
+    }
+    #datePicker input:first-child {
+        padding-left: 40px;
     }
     .colorDanger{
         color: var(--danger-color);
