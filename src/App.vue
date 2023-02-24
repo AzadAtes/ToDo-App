@@ -10,7 +10,6 @@
   let toggleSidebar = () => { showSidebar.value = !showSidebar.value }
 
   const editBarStore = useEditBarStore()
-  console.log(editBarStore.searchStr);
 
   const clearSearch = () => {
     editBarStore.searchStr = ''

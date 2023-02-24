@@ -20,7 +20,6 @@
     }
 
     let matchingTasks = computed(() => {
-        console.log(editBarStore.searchStr);
         if(props.search.length){
             return taskStore.tasks.filter((task) => task.task.includes(editBarStore.searchStr))
         } else {
@@ -36,7 +35,7 @@
             <iconMenu class="toggleBtn" v-if="!props.showSidebar" @click="emit('toggleSidebar')" />
             <p>Searching for "{{ props.search }}"</p>
         </div>
-        <TaskList :tasks="matchingTasks" @make-important="makeImportant" />
+        <TaskList :tasks="editBarStore.searchResult" @make-important="makeImportant" />
     </div>
 </template>
 

@@ -26,6 +26,14 @@
         taskStore.updateTask(editBarStore.currTask)
     }
 
+    const removeTaskDate = () => {
+        editBarStore.currTask.fullDate = null
+        editBarStore.currTask.date.day = null
+        editBarStore.currTask.date.month = null
+        editBarStore.currTask.date.year = null
+        taskStore.updateTask(editBarStore.currTask)
+    }
+
     const changeTaskName = (val) => {
         if(val.replace(/\s+/g, '').length){
             editBarStore.currTask.task = val
@@ -72,7 +80,7 @@
                     @blur= "updateTaskName($event.target.value)"
                 />
             </div>
-            <Datepicker id="datePicker" v-model="editBarStore.currTask.fullDate" :enable-time-picker="false" @closed= "updateTaskDate">
+            <Datepicker id="datePicker" v-model="editBarStore.currTask.fullDate" :enable-time-picker="false" @closed= "updateTaskDate" @cleared="removeTaskDate">
                 <template #input-icon>
                     <iconCalendarOutline />
                 </template>
@@ -107,8 +115,8 @@
         flex-direction: column;
         align-items: center;
         flex: 1;
-        gap: 10px;
-        margin-top: 10px;
+        gap: 5px;
+        margin-top: 5px;
     }
     .itemWrapper {
         width: 95%;
@@ -121,6 +129,7 @@
         cursor: pointer;
     }
     #taskNameWrapper{
+        height: 250px;
         cursor: auto;
     }
     .itemWrapper > *{
@@ -128,7 +137,7 @@
     }
     .checkboxInput{
         align-self: flex-start;
-        margin-top: 16px;
+        margin: 16px 0px 0px 15px;
     }
     .textInput{
         flex: 1;
@@ -139,7 +148,7 @@
         resize: none;
         font-family: inherit;
         font-size: large ;
-        height: 100px;
+        height: 225px;
     }
     .sideBar {
         height: 100%;
@@ -152,8 +161,8 @@
     }
     #datePicker{
         position: relative;
-        bottom: 10px;
-        width: 95%;
+        bottom: 15px;
+        width: 96%;
     }
     #datePicker svg:first-child {
         padding: 6px 0px 0px 10px;
