@@ -1,11 +1,24 @@
 <script setup>
   import iconSettingsOutline from './icons/iconSettingsOutline.vue';
+  import { useRouter } from 'vue-router'
+  import { useEditBarStore } from '../stores/editBarStore';  
+
+  const emit = defineEmits(['showSearch'])
+
+  const router = useRouter()
+  const editBarStore = useEditBarStore()
+
+
+  const showSearch = () => {
+    editBarStore.visible = false
+    router.push({ name: 'search' })
+  }
 </script>
 
 <template>
     <div id="navBar">
       <div class="navBarItem">To Do</div>
-      <input class="navBarItem disabledItem" id="searchBar" type="text" placeholder="Search.." disabled>
+      <input class="navBarItem disabledItem" id="searchBar" type="text" placeholder="Search.." v-model="editBarStore.searchStr" @input="showSearch">
       <div class="navBarItem">
         <iconSettingsOutline id="settingsIcon" />
       </div>
@@ -49,12 +62,5 @@
     position: relative;
     top: 2px;
     width: 28px;
-  }
-
-  #searchBar:disabled{
-    background-color: white;
-  }
-  #searchBar, #settingsIcon{
-    cursor: not-allowed;
   }
 </style>

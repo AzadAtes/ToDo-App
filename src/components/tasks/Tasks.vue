@@ -16,7 +16,6 @@
   const emit = defineEmits(['toggleSidebar'])
 
   const taskStore = useTasksStore()
-  taskStore.getTasks()
 
   const makeImportant = (task) => {
     taskStore.updateTask(task, {important: !task.important})
@@ -55,7 +54,7 @@
 
 <template>
   <div>
-    <div id="title" style="padding-left:5px; padding-top: 2px;">
+    <div id="title">
       <iconMenu class="toggleBtn" v-if="!props.showSidebar" @click="emit('toggleSidebar')" />
       <slot name="icon" class="toggleBtn" v-else></slot>
       <p><slot name="title"></slot></p>
@@ -75,6 +74,8 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    padding-left:5px;
+    padding-top: 2px;
   }
 
   .toggleBtn:hover {

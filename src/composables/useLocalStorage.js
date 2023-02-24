@@ -7,7 +7,7 @@ export function useLocalStorage(key, val = null, watchDeep = false) {
     }
 
     function write(){
-        if (val.value === null || val.value === '') {
+        if (val.value === null) {
             localStorage.removeItem(key)
         } else {
             localStorage.setItem(key, JSON.stringify(val.value))
@@ -23,7 +23,7 @@ export function useLocalStorage(key, val = null, watchDeep = false) {
         write()
     }
 
-    watch(val.value, () => {write()}, {deep: watchDeep})
+    watch(val, () => {write()}, {deep: watchDeep})
 
     return val
 }

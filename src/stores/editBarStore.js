@@ -1,15 +1,17 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { useLocalStorage } from '../composables/useLocalStorage';
 
 export const useEditBarStore = defineStore('editBar', () => {
 
-    let visible = ref(false)
-    let currTask = ref()
+    let visible = useLocalStorage('editbarVisible', false)
+    let currTask = useLocalStorage('currTask', {})
+    let searchStr = useLocalStorage('searchStr', '')
 
     const editTask = (task) => {
         visible.value = true
         currTask.value = task
     }
 
-    return { currTask, visible, editTask }
+    return { currTask, visible, searchStr, editTask }
 })

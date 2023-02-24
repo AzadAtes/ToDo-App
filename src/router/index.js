@@ -3,6 +3,7 @@ import MyDayView from '../views/MyDayView.vue'
 import ImportantView from '../views/ImportantView.vue'
 import PlannedView from '../views/PlannedView.vue'
 import TasksView from '../views/TasksView.vue'
+import SearchView from '../views/SearchView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,12 +32,16 @@ const router = createRouter({
       path: '/todo/tasks',
       name: 'tasks',
       component: TasksView
-
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/todo/search',
+      name: 'search',
+      component: SearchView,
     }
+    // route level code-splitting
+    // this generates a separate chunk (About.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    // component: () => import('../views/AboutView.vue')
   ]
 })
 

@@ -90,5 +90,7 @@ export const useTasksStore = defineStore('tasks', () => {
     }
   }
 
+  getTasks()
+  
   return { tasks, addTask, getTasks, updateTask, deleteTask }
 })

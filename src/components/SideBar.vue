@@ -8,11 +8,12 @@
   import iconPlus from './icons/iconPlus.vue';
   import { useEditBarStore } from '../stores/editBarStore';
     
-  const emit = defineEmits(['toggleSidebar'])
+  const emit = defineEmits(['toggleSidebar', 'clearSearch'])
 
   const editBarStore = useEditBarStore()
-  const hideSideBar = () => {
+  const resetEditAndSearch = () => {
     editBarStore.visible = false
+    emit('clearSearch')
   }
 </script>
 
@@ -24,19 +25,19 @@
         </div>
         <div class="sideBarItem">
           <iconSun />
-          <router-link class="sideBarLink" to="/todo/myday" @click="hideSideBar">My Day</router-link>
+          <router-link class="sideBarLink" to="/todo/myday" @click="resetEditAndSearch">My Day</router-link>
         </div>
         <div class="sideBarItem">
           <iconStarOutline />
-          <router-link class="sideBarLink" to="/todo/important" @click="hideSideBar">Important</router-link>
+          <router-link class="sideBarLink" to="/todo/important" @click="resetEditAndSearch">Important</router-link>
         </div>
         <div class="sideBarItem">
           <iconCalendarOutline />
-          <router-link class="sideBarLink" to="/todo/planned" @click="hideSideBar">Planned</router-link>
+          <router-link class="sideBarLink" to="/todo/planned" @click="resetEditAndSearch">Planned</router-link>
         </div>
         <div class="sideBarItem">
           <iconHouseOutline />
-          <router-link class="sideBarLink" to="/todo/tasks" @click="hideSideBar">Tasks</router-link>
+          <router-link class="sideBarLink" to="/todo/tasks" @click="resetEditAndSearch">Tasks</router-link>
         </div>
       </div>
       <div class="sideBarBottom">

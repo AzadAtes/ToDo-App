@@ -1,27 +1,29 @@
 <script setup>
-import { ref } from 'vue';
-import { RouterView } from 'vue-router'
-import NavBar from './components/NavBar.vue';
-import SideBar from './components/SideBar.vue';
-import editBar from './components/editBar.vue';
-import { useEditBarStore } from './stores/editBarStore';
+  import { ref } from 'vue';
+  import { RouterView } from 'vue-router'
+  import NavBar from './components/NavBar.vue';
+  import SideBar from './components/SideBar.vue';
+  import editBar from './components/editBar.vue';
+  import { useEditBarStore } from './stores/editBarStore';
 
-let showSidebar = ref(true)
-let toggleSidebar = () => { showSidebar.value = !showSidebar.value }
+  let showSidebar = ref(true)
+  let toggleSidebar = () => { showSidebar.value = !showSidebar.value }
 
-const editBarStore = useEditBarStore()
+  const editBarStore = useEditBarStore()
+  console.log(editBarStore.searchStr);
 
-const date = new Date()
-console.log(date.getDate(), date.getMonth() + 1, date.getFullYear());
+  const clearSearch = () => {
+    editBarStore.searchStr = ''
+  }
 </script>
 
 <template>
   <header>
-    <NavBar id="navBar" />
+    <NavBar id="navBar" :search-str="editBarStore.searchStr" />
   </header>
   <main>
-    <SideBar id="sideBar" v-if="showSidebar" @toggle-sidebar="toggleSidebar" />
-    <RouterView id="routerView" :show-sidebar="showSidebar" @toggle-sidebar="toggleSidebar" :class="{ marginRight: editBarStore.visible, marginLeft: showSidebar }" />
+    <SideBar id="sideBar" v-if="showSidebar" @toggle-sidebar="toggleSidebar" @clear-search="clearSearch" />
+    <RouterView id="routerView" :show-sidebar="showSidebar" @toggle-sidebar="toggleSidebar" :class="{ marginRight: editBarStore.visible, marginLeft: showSidebar }" :search="editBarStore.searchStr" />
     <editBar id="editBar" v-if="editBarStore.visible" />
   </main>
 </template>
