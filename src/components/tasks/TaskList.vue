@@ -1,7 +1,7 @@
 <script setup>
     import { ref } from 'vue';
     import Task from './Task.vue';
-    import IconTriangleDown from '../icons/IconTriangleDown.vue';
+    import IconTriangleDown from '../icons/iconTriangleDown.vue';
 
     const props = defineProps({
         tasks: Array,
