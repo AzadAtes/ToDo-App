@@ -56,7 +56,7 @@
   <div>
     <div id="title">
       <iconMenu class="toggleBtn" v-if="!props.showSidebar" @click="emit('toggleSidebar')" />
-      <slot name="icon" class="toggleBtn" v-else></slot>
+      <slot name="icon" v-else></slot>
       <p><slot name="title"></slot></p>
     </div>
     <TaskAdd id="addTask" :options="props.options" />

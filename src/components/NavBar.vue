@@ -23,7 +23,7 @@
 
 <template>
     <div id="navBar">
-      <div class="navBarItem">View Source Code</div>
+      <div class="navBarItem">To Do</div>
       <div id="searchBar">
         <input class="navBarItem" type="text" placeholder="Search.." v-model="editBarStore.searchStr" @input="showSearch">
         <iconClose id="searchBarIcon" v-if="router.currentRoute.value.fullPath == '/todo/search'" @click="closeSearch" />
