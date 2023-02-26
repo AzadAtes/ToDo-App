@@ -1,7 +1,7 @@
 <script setup>
     import { ref } from 'vue';
-    import task from './task.vue';
-    import iconTriangleDown from '../icons/iconTriangleDown.vue';
+    import Task from './Task.vue';
+    import IconTriangleDown from '../icons/iconTriangleDown.vue';
 
     const props = defineProps({
         tasks: Array,
@@ -20,14 +20,14 @@
         <div class="title" v-if="canToggle" :class="visible ? '' : 'toggled'">
             <button @click="toggleVisibility">
                 <p><slot></slot></p>
-                <iconTriangleDown />
+                <IconTriangleDown />
             </button>
         </div>
         <div class="title" v-else>
             <p><slot></slot></p>
         </div>
         <ul id="taskList" v-if="visible">
-            <task class="taskListItem" v-for="task in props.tasks" @make-important="(task) => emit('makeImportant', task)" :task="task" :key="task._id" />
+            <Task class="taskListItem" v-for="task in props.tasks" @make-important="(task) => emit('makeImportant', task)" :task="task" :key="task._id" />
         </ul>
     </div>
 </template>
