@@ -14,9 +14,15 @@
 <template>
   <div>
     <Tasks :options="{ myDay: true, date: { day: today.getDate(), month: today.getMonth()+1, year: today.getFullYear()}}" :show-sidebar="showSidebar"  @toggle-sidebar="emit('toggleSidebar')">
-      <template v-slot:title> My Day </template>
+      <template v-slot:title>
+        <div id="titleSlot">
+          My Day
+        </div>
+      </template>
       <template v-slot:icon>
-        <iconSun />
+        <div id="iconSlot">
+          <iconSun />
+        </div>
       </template>
     </Tasks>
   </div>

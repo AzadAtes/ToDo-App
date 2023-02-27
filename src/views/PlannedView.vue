@@ -12,10 +12,22 @@
 <template>
   <div>
     <Tasks :options="{ planned: true }" :show-sidebar="showSidebar"  @toggle-sidebar="emit('toggleSidebar')">
-      <template v-slot:title> Planned </template>
+      <template v-slot:title>
+        <div id="titleSlot">
+          Planned
+        </div>
+      </template>
       <template v-slot:icon>
-        <iconCalendarOutline />
+        <div id="iconSlot">
+          <iconCalendarOutline />
+        </div>
       </template>
     </Tasks>
   </div>
 </template>
+
+<style scoped>
+  #iconSlot, #titleSlot{
+    color: var(--accent-color);
+  }
+</style>
