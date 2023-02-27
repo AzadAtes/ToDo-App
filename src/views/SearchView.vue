@@ -39,7 +39,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     #title {
         display: flex;
         align-items: center;
