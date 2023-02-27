@@ -65,7 +65,6 @@
         editBarStore.visible = false
         taskStore.deleteTask(editBarStore.currTask)
     }
-    console.log(editBarStore.currTask);
 </script>
 
 <template>

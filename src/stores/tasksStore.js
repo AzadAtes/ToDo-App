@@ -3,11 +3,12 @@ import { ref } from "vue";
 
 export const useTasksStore = defineStore('tasks', () => {
 
+  const tasksRoute = import.meta.env.VITE_TASKS_ROUTE;
   const tasks = ref([])
 
   const getTasks = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:4444/api/v1/tasks')
+      const response = await fetch(`${tasksRoute}`)
       const data = await response.json()
       tasks.value = data.tasks
     } catch (error) {
@@ -29,7 +30,7 @@ export const useTasksStore = defineStore('tasks', () => {
     tasks.value.push(newTask)
     
     try {
-      const response = await fetch('http://127.0.0.1:4444/api/v1/tasks', {
+      const response = await fetch(`${tasksRoute}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -54,7 +55,7 @@ export const useTasksStore = defineStore('tasks', () => {
       task[currKey] = options[currKey]
     }
     try {
-      await fetch(`http://127.0.0.1:4444/api/v1/tasks/${task._id}`, {
+      await fetch(`${tasksRoute}/${task._id}`, {
         method: 'PATCH',
         headers: {  
           'Accept': 'application/json',
@@ -76,7 +77,7 @@ export const useTasksStore = defineStore('tasks', () => {
 
     // delete tasks.value[index]
     try {
-      await fetch(`http://127.0.0.1:4444/api/v1/tasks/${task._id}`, {
+      await fetch(`${tasksRoute}/${task._id}`, {
         method: 'DELETE',
         headers: {  
           'Accept': 'application/json',
